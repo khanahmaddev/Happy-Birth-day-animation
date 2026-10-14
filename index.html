@@ -4,11 +4,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Birthday Wish for You ❤️</title>
+<meta name="theme-color" content="#08051b">
+<title>A Birthday Wish for Iram ❤️</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--pink:#ffd1d2;--red:#a51d43;--gold:#ffe0a3}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --pink:#ff7ac8;
+  --hot-pink:#ff268f;
+  --purple:#a855f7;
+  --gold:#ffe0a3;
+  --text:#ffe9f2;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   font-family:Georgia,"Times New Roman",serif;
@@ -18,24 +34,25 @@ body{
   overflow-x:hidden;
 }
 
-/* NEON NIGHT BACKGROUND */
+/* CINEMATIC NIGHT BACKGROUND */
+
 #neon-background{
   position:fixed;
   inset:0;
-  z-index:-1;
+  z-index:0;
   overflow:hidden;
   pointer-events:none;
-  background:linear-gradient(
-    180deg,#08051b 0%,#17102f 48%,#30102f 100%
-  );
+  background:
+    radial-gradient(ellipse at 50% 80%,#54113f55,transparent 55%),
+    linear-gradient(180deg,#08051b 0%,#17102f 48%,#30102f 100%);
 }
 
 .neon-moon{
   position:absolute;
   top:9%;
   right:10%;
-  width:85px;
-  height:85px;
+  width:clamp(65px,13vw,95px);
+  aspect-ratio:1;
   border-radius:50%;
   background:radial-gradient(
     circle at 35% 30%,
@@ -45,6 +62,7 @@ body{
     0 0 20px #f5baff,
     0 0 50px #d65cff99,
     0 0 100px #a34bff44;
+  animation:moonGlow 4s ease-in-out infinite alternate;
 }
 
 .neon-moon::before,
@@ -56,33 +74,64 @@ body{
 }
 
 .neon-moon::before{
-  width:17px;height:17px;top:20px;left:20px;
+  width:17px;
+  height:17px;
+  top:23%;
+  left:23%;
 }
 
 .neon-moon::after{
-  width:11px;height:11px;bottom:19px;right:18px;
+  width:11px;
+  height:11px;
+  bottom:22%;
+  right:21%;
 }
+
+@keyframes moonGlow{
+  from{
+    box-shadow:
+      0 0 20px #f5baff,
+      0 0 50px #d65cff66;
+  }
+  to{
+    box-shadow:
+      0 0 35px #fff,
+      0 0 75px #d65cffcc,
+      0 0 120px #a34bff66;
+  }
+}
+
+/* NEON AMBIENT LIGHTS */
 
 .neon-glow{
   position:absolute;
-  width:300px;
-  height:300px;
+  width:clamp(220px,40vw,380px);
+  aspect-ratio:1;
   border-radius:50%;
   filter:blur(90px);
-  opacity:.25;
+  opacity:.23;
+  animation:ambientGlow 8s ease-in-out infinite alternate;
 }
 
 .neon-glow-one{
   background:#ff168c;
-  left:-140px;
-  top:30%;
+  left:-160px;
+  top:25%;
 }
 
 .neon-glow-two{
   background:#713dff;
-  right:-150px;
+  right:-170px;
   bottom:5%;
+  animation-delay:-4s;
 }
+
+@keyframes ambientGlow{
+  from{opacity:.12;transform:scale(.85)}
+  to{opacity:.3;transform:scale(1.15)}
+}
+
+/* TWINKLING STARS */
 
 .neon-star{
   position:absolute;
@@ -91,13 +140,27 @@ body{
   border-radius:50%;
   background:#fff;
   box-shadow:0 0 8px #fff,0 0 15px #ed9aff;
+  animation:twinkle 2.5s ease-in-out infinite alternate;
 }
+
+@keyframes twinkle{
+  from{
+    opacity:.25;
+    transform:scale(.7);
+  }
+  to{
+    opacity:1;
+    transform:scale(1.4);
+  }
+}
+
+/* SHOOTING STAR */
 
 .neon-shooting-star{
   position:absolute;
   top:23%;
-  left:-150px;
-  width:120px;
+  left:-160px;
+  width:130px;
   height:2px;
   background:linear-gradient(
     90deg,transparent,#fff,#ff8bfc,transparent
@@ -108,119 +171,291 @@ body{
 }
 
 @keyframes neonStarMove{
-  0%,65%{left:-150px;opacity:0}
+  0%,65%{left:-160px;opacity:0}
   70%{opacity:1}
   90%,100%{left:120%;opacity:0}
 }
 
-/* ORIGINAL STYLES */
+/* FLOATING PETALS */
+
 #petals{
   position:fixed;
   inset:0;
   pointer-events:none;
   overflow:hidden;
-  z-index:5
+  z-index:4;
 }
 
 .petal{
   position:absolute;
   top:-40px;
   animation:fall linear infinite;
-  opacity:.7
+  opacity:.75;
+  filter:drop-shadow(0 0 5px #ff8fcf);
 }
 
 @keyframes fall{
-  to{transform:translateY(110vh) rotate(600deg);opacity:0}
+  to{
+    transform:translateY(110vh) rotate(600deg);
+    opacity:0;
+  }
 }
+
+/* FLOATING NEON PARTICLES */
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:3;
+}
+
+.particle{
+  position:absolute;
+  bottom:-15px;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#ff9cde;
+  box-shadow:
+    0 0 6px #ff57c8,
+    0 0 15px #c65aff;
+  animation:particleRise linear infinite;
+  opacity:0;
+}
+
+@keyframes particleRise{
+  0%{
+    transform:translate3d(0,0,0) scale(.5);
+    opacity:0;
+  }
+  15%{opacity:.85}
+  80%{opacity:.55}
+  100%{
+    transform:translate3d(25px,-110vh,0) scale(1.3);
+    opacity:0;
+  }
+}
+
+/* PAGE SYSTEM */
 
 .page{
   min-height:100vh;
+  min-height:100svh;
   display:none;
   align-items:center;
   justify-content:center;
-  padding:25px 16px;
+  padding:28px 16px;
   text-align:center;
-  position:relative;
-}
-
-.page.active{
-  display:flex;
-  animation:appear 1s ease
-}
-
-@keyframes appear{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:none}
-}
-
-.card{
-  width:min(100%,420px);
-  padding:32px 22px;
-  border:1px solid #fff8;
-  border-radius:28px;
-  background:linear-gradient(145deg,#ffdfd8dd,#e8a9b4ee);
-  box-shadow:0 18px 50px #70243b30;
   position:relative;
   z-index:2;
 }
 
+.page.active{
+  display:flex;
+  animation:pageAppear .9s ease both;
+}
+
+@keyframes pageAppear{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* GLASS CARDS */
+
+.card{
+  width:min(100%,430px);
+  padding:34px 23px;
+  border:1px solid #ffc9e888;
+  border-radius:28px;
+  background:linear-gradient(
+    145deg,
+    #ffdfd8ed,
+    #e8a9b4f2
+  );
+  box-shadow:
+    0 18px 50px #70243b30,
+    0 0 24px #ff70bc20;
+  position:relative;
+  overflow:hidden;
+  z-index:2;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(
+    135deg,#fff9,#ff6ac455,transparent,#fff7
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
 .eyebrow{
-  letter-spacing:4px;
+  letter-spacing:3px;
   font:11px Arial,sans-serif;
-  margin-bottom:18px
+  margin-bottom:19px;
+  color:#852443;
 }
 
 h1{
   font-size:clamp(32px,8vw,47px);
-  line-height:1.15;
-  margin-bottom:17px
+  line-height:1.2;
+  margin-bottom:18px;
+  text-wrap:balance;
 }
 
-h1 em{color:#a02c4a}
+h1 em{
+  color:#a02c4a;
+}
+
+/* NEON BIRTHDAY TEXT */
+
+.neon-title{
+  color:#fff1fa;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 12px #ff8cd5,
+    0 0 25px #ff3bab,
+    0 0 45px #d42dff;
+  animation:titleGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow{
+  from{
+    text-shadow:
+      0 0 4px #fff,
+      0 0 10px #ff8cd5,
+      0 0 20px #ff3bab;
+  }
+  to{
+    text-shadow:
+      0 0 7px #fff,
+      0 0 18px #ff8cd5,
+      0 0 35px #ff3bab,
+      0 0 55px #b02dff;
+  }
+}
 
 p{
   font-size:16px;
   line-height:1.8;
-  margin:12px 0
+  margin:12px 0;
+}
+
+/* NEON HEART */
+
+.heart-wrap{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:13px auto;
+  width:150px;
+  height:150px;
+}
+
+.heart-aura{
+  position:absolute;
+  inset:17px;
+  border-radius:50%;
+  background:#ff278b;
+  filter:blur(32px);
+  opacity:.38;
+  animation:auraPulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes auraPulse{
+  from{
+    transform:scale(.75);
+    opacity:.2;
+  }
+  to{
+    transform:scale(1.2);
+    opacity:.6;
+  }
 }
 
 .heart{
-  font-size:110px;
-  line-height:1.4;
-  filter:drop-shadow(0 0 18px #ff466a);
-  animation:beat 1.5s infinite
+  position:relative;
+  z-index:1;
+  font-size:100px;
+  line-height:1.3;
+  filter:
+    drop-shadow(0 0 8px #ff8abf)
+    drop-shadow(0 0 22px #ff268f);
+  animation:heartBeat 1.45s ease-in-out infinite;
+  transition:filter .4s,transform .4s;
 }
 
-@keyframes beat{
+@keyframes heartBeat{
   0%,100%{transform:scale(1)}
-  50%{transform:scale(1.12)}
+  15%{transform:scale(1.13)}
+  30%{transform:scale(1)}
+  45%{transform:scale(1.09)}
+  60%{transform:scale(1)}
 }
+
+/* BUTTONS */
 
 button{
   margin:12px 5px 0;
   padding:14px 22px;
-  border:0;
+  border:1px solid #ffb2d6;
   border-radius:30px;
-  background:#922544;
+  background:linear-gradient(135deg,#a51d53,#70184a);
   color:white;
-  font-size:14px;
+  font-size:13px;
+  font-family:Arial,sans-serif;
   letter-spacing:1px;
   cursor:pointer;
-  box-shadow:0 5px 15px #78203935;
-  transition:.25s;
+  box-shadow:
+    0 5px 15px #78203935,
+    0 0 15px #ff389a30;
+  transition:transform .25s,box-shadow .25s,background .25s;
 }
 
 button:hover{
   transform:translateY(-2px);
-  background:#71162f
+  box-shadow:
+    0 6px 18px #78203955,
+    0 0 25px #ff389a70;
 }
 
-.secondary{background:#fff2f1;color:#81233c}
+button:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:4px;
+}
 
-/* MOBILE + DESKTOP DRAGGABLE ARROW */
+button:active{
+  transform:scale(.97);
+}
+
+.secondary{
+  background:#fff2f1;
+  color:#81233c;
+  border-color:#fff;
+}
+
+/* DRAGGABLE ARROW */
+
 .bow{
-  font-size:80px;
-  margin:12px 0;
+  font-size:75px;
+  margin:8px 0;
   cursor:grab;
   user-select:none;
   -webkit-user-select:none;
@@ -228,59 +463,134 @@ button:hover{
   touch-action:none;
   display:inline-block;
   position:relative;
-  z-index:10;
+  z-index:5;
   transform:translate(0,0);
+  filter:drop-shadow(0 0 9px #ff9cda);
 }
 
 .bow:active{cursor:grabbing}
 
+.hint{
+  font-size:14px;
+  opacity:.9;
+}
+
+/* DARK PAGES */
+
 .dark{
-  background:radial-gradient(ellipse at center,#76203d,#240817);
-  color:#ffe6d6;
+  background:radial-gradient(
+    ellipse at center,
+    #76203d55,
+    #24081700 70%
+  );
+  color:#ffe6f1;
 }
 
 .dark .card{
-  background:linear-gradient(145deg,#67132dce,#250817e8);
-  border-color:#ffb5bd55;
+  background:linear-gradient(
+    145deg,
+    #3b1038f2,
+    #170a28f5
+  );
+  color:#ffe6f1;
+  border-color:#ff8ed055;
+  box-shadow:
+    0 20px 60px #0005,
+    0 0 25px #ff3ba522;
 }
 
-.dark h1{color:#ffe2a3}
+.dark .eyebrow{
+  color:#ffb9df;
+}
+
+.dark h1{
+  color:#ffe2a3;
+}
+
+.dark h1 em{
+  color:#ff9fd5;
+}
 
 .dark button{
-  background:#f5c5b4;
-  color:#57152c
+  background:linear-gradient(135deg,#ff9fcf,#ffbfd8);
+  color:#57152c;
+  border-color:#fff5;
 }
+
+/* BIRTHDAY FLOWER */
 
 .tree{
-  font-size:125px;
-  filter:drop-shadow(0 0 22px #ff8baf);
-  margin:12px
+  font-size:100px;
+  filter:
+    drop-shadow(0 0 12px #ff8baf)
+    drop-shadow(0 0 28px #ff398e55);
+  margin:12px;
+  animation:heartBeat 2s ease-in-out infinite;
 }
 
-.letter{
-  background:#fff0e6;
-  color:#70213a;
-  padding:24px;
-  border-radius:16px;
-  line-height:1.9;
-  margin-top:20px;
-  box-shadow:0 8px 20px #3d0b2022;
+/* FINAL PAGE */
+
+.final-heart{
+  display:inline-block;
+  font-size:76px;
+  margin:10px 0 16px;
+  filter:
+    drop-shadow(0 0 12px #ff557e)
+    drop-shadow(0 0 28px #ff3e8555);
+  animation:heartBeat 1.5s infinite;
+}
+
+.final-message{
+  color:#ffe9f2;
+  text-shadow:0 0 10px #ff72bd50;
+}
+
+.signature{
+  color:#ffb6dd;
+  font-size:15px;
+  margin-top:24px;
 }
 
 .footer{
-  font:11px Arial,sans-serif;
-  letter-spacing:2px;
+  font:10px Arial,sans-serif;
+  letter-spacing:1.5px;
+  line-height:1.8;
   margin-top:25px;
-  opacity:.8
+  opacity:.85;
 }
 
-.small{font:12px Arial,sans-serif;opacity:.8}
-#musicNote{font:12px Arial,sans-serif}
+/* SMALL PHONE SCREENS */
 
 @media(max-width:380px){
   .card{padding:26px 16px}
-  .heart{font-size:90px}
+  .heart{font-size:85px}
+  .heart-wrap{width:125px;height:125px}
+  .bow{font-size:65px}
   p{font-size:15px}
+  .eyebrow{letter-spacing:2px}
+  .tree{font-size:85px}
+  button{padding:13px 17px}
+}
+
+@media(max-height:650px){
+  .page{padding-top:16px;padding-bottom:16px}
+  .card{padding-top:22px;padding-bottom:22px}
+  .heart-wrap{height:110px}
+  .heart{font-size:78px}
+  .tree{font-size:72px}
+  .eyebrow{margin-bottom:12px}
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+  }
 }
 </style>
 </head>
@@ -288,273 +598,356 @@ button:hover{
 <body>
 
 <!-- BACKGROUND -->
+
 <div id="neon-background">
   <div class="neon-moon"></div>
   <div class="neon-glow neon-glow-one"></div>
   <div class="neon-glow neon-glow-two"></div>
   <div class="neon-shooting-star"></div>
-  <div class="neon-stars" id="neonStars"></div>
+  <div id="neonStars"></div>
 </div>
 
+<div id="particles"></div>
 <div id="petals"></div>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1: OPENING -->
+
 <section class="page active" id="page1">
   <div class="card">
-    <div class="eyebrow">A LITTLE SURPRISE FOR YOU</div>
-    <p>For <em id="name1">My Love</em>,</p>
-    <h1>with all my <em>heart</em></h1>
-    <p>A little birthday surprise, just for you.</p>
 
-    <div class="heart" id="heart">💎</div>
-    <div class="bow" id="bow" aria-label="Drag the arrow to the diamond">🏹</div>
-    <p>Pull the arrow and make a wish ❤️</p>
+    <div class="eyebrow">A LITTLE BIRTHDAY SURPRISE</div>
 
-    <button onclick="releaseArrow()">PULL &amp; RELEASE ♥</button>
-    <div class="footer">MADE WITH LOVE, JUST FOR YOU</div>
-  </div>
-</section>
+    <h1>For <span id="name1">Iram</span>,</h1>
 
-<!-- PAGE 2 -->
-<section class="page dark" id="page2">
-  <div class="card">
-    <div class="eyebrow">A WISH FROM MY HEART</div>
-    <p>Close your eyes for a moment...</p>
-    <h1>Happy<br>Birthday,<br><em id="name2">My Love</em> ❤️</h1>
-    <div class="heart">💗</div>
-    <p>To the one who makes my world more beautiful.</p>
-    <p>Today is your day. You deserve every bit of happiness this world can offer.</p>
-    <button onclick="nextPage(3)">OPEN YOUR LETTER ♥</button>
-  </div>
-</section>
+    <p>A little surprise, made especially for you.</p>
 
-<!-- PAGE 3 -->
-<section class="page" id="page3">
-  <div class="card">
-    <div class="eyebrow">A LITTLE PIECE OF MY HEART</div>
-    <h1>For you, <em id="name3">My Love</em></h1>
-    <div class="tree">🌸</div>
-
-    <div class="letter">
-      <h2>My Dearest Love, ❤️</h2>
-      <p>
-        If I could give you one thing in life,
-        I would give you the ability to see yourself
-        through my eyes. Only then would you
-        understand how special you are to me.
-      </p>
-      <p>
-        Your happiness matters. Your dreams matter.
-        Your peace matters. I hope this new year of
-        your life brings you beautiful memories,
-        endless smiles, and all the love you deserve.
-      </p>
-      <p><em>Always wishing the best for you. ❤️</em></p>
+    <div class="heart-wrap">
+      <div class="heart-aura"></div>
+      <div class="heart" id="heart">💎</div>
     </div>
 
-    <button onclick="nextPage(4)">ONE LAST SURPRISE ✨</button>
-    <div class="footer">YOUR HAPPINESS MATTERS MOST</div>
+    <div
+      class="bow"
+      id="bow"
+      aria-label="Drag the arrow towards the diamond"
+      role="button"
+      tabindex="0"
+    >🏹</div>
+
+    <p class="hint">Pull the arrow and make a wish ❤️</p>
+
+    <button onclick="releaseArrow()">
+      PULL &amp; RELEASE ♥
+    </button>
+
+    <div class="footer">A LITTLE SOMETHING JUST FOR YOU</div>
+
   </div>
 </section>
 
-<!-- PAGE 4 -->
-<section class="page dark" id="page4">
+<!-- PAGE 2: BIRTHDAY WISH -->
+
+<section class="page dark" id="page2">
   <div class="card">
-    <div class="eyebrow">ONE LAST THING...</div>
-    <div class="heart">❤️</div>
-    <h1>You are <em>special</em></h1>
+
+    <div class="eyebrow">A SPECIAL DAY FOR YOU</div>
+
+    <p>Take a little moment for yourself...</p>
+
+    <h1 class="neon-title">
+      Happy Birthday,<br>
+      <em id="name2">Iram</em> ❤️
+    </h1>
+
+    <div class="tree">💗</div>
+
+    <p>I hope today brings you a little extra happiness.</p>
+
     <p>
-      No grand gift could ever express every good
-      wish I have for you.
+      May your days be filled with beautiful memories,
+      peaceful moments, genuine smiles, and all the
+      good things you deserve.
     </p>
-    <p>Keep smiling. Keep shining. And never forget how much you matter.</p>
-    <h2 id="finalName">With love, always ❤️</h2>
-    <button onclick="restart()">EXPERIENCE IT AGAIN ↻</button>
-    <div class="footer">A LITTLE SURPRISE MADE JUST FOR YOU</div>
+
+    <button onclick="nextPage(3)">
+      SEE ONE LAST WISH ♥
+    </button>
+
+  </div>
+</section>
+
+<!-- PAGE 3: FINAL WISH -->
+
+<section class="page dark" id="page3">
+  <div class="card">
+
+    <div class="eyebrow">ONE LAST THING...</div>
+
+    <div class="final-heart">❤️</div>
+
+    <h1 class="neon-title">
+      <span id="name3">Iram</span>,<br>
+      Keep Shining
+    </h1>
+
+    <div class="final-message">
+      <p>
+        No matter what the coming year brings,
+        I hope it brings you more reasons to smile.
+      </p>
+
+      <p>
+        Keep dreaming, keep growing, and never stop
+        being the wonderful person you are.
+      </p>
+
+      <p>
+        I hope this little surprise made your day
+        a little more special.
+      </p>
+    </div>
+
+    <p class="signature" id="finalName"></p>
+
+    <button onclick="restart()" class="secondary">
+      EXPERIENCE IT AGAIN ↻
+    </button>
+
+    <div class="footer">MADE WITH CARE, JUST FOR YOU</div>
+
   </div>
 </section>
 
 <script>
-// CUSTOMIZE THESE DETAILS
-const LOVE_NAME = "Your Love";
-const YOUR_NAME = "Someone who cares about you";
+/* PERSONALIZE YOUR DETAILS */
 
-// SET NAMES
+const LOVE_NAME = "Iram";
+
+// Replace "Your Name" with your own name.
+const YOUR_NAME = "Your Name";
+
+/* SET NAMES */
+
 ["name1","name2","name3"].forEach(id=>{
-  document.getElementById(id).textContent=LOVE_NAME;
+  const element=document.getElementById(id);
+  if(element) element.textContent=LOVE_NAME;
 });
 
 document.getElementById("finalName").textContent=
   "With love, " + YOUR_NAME + " ❤️";
 
-// MOVE BETWEEN PAGES
+/* PAGE TRANSITIONS */
+
 function nextPage(number){
   document.querySelectorAll(".page").forEach(page=>{
     page.classList.remove("active");
   });
 
-  document.getElementById("page"+number).classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
+  const target=document.getElementById("page"+number);
+
+  if(target){
+    target.classList.add("active");
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+  }
 }
 
-// DRAG ARROW TO THE DIAMOND
-const bow = document.getElementById("bow");
-const diamond = document.getElementById("heart");
+/* ARROW INTERACTION */
 
-let dragging = false;
-let hasReleased = false;
-let startX = 0;
-let startY = 0;
-let arrowX = 0;
-let arrowY = 0;
+const bow=document.getElementById("bow");
+const diamond=document.getElementById("heart");
+
+let dragging=false;
+let hasReleased=false;
+let startX=0;
+let startY=0;
+let arrowX=0;
+let arrowY=0;
 
 bow.addEventListener("pointerdown",function(e){
-  if(hasReleased)return;
+  if(hasReleased) return;
 
-  dragging = true;
-  startX = e.clientX;
-  startY = e.clientY;
-  arrowX = 0;
-  arrowY = 0;
+  dragging=true;
+  startX=e.clientX;
+  startY=e.clientY;
+  arrowX=0;
+  arrowY=0;
 
-  bow.style.transition = "none";
-  bow.setPointerCapture(e.pointerId);
+  bow.style.transition="none";
+
+  try{
+    bow.setPointerCapture(e.pointerId);
+  }catch(error){}
+
   e.preventDefault();
 });
 
 bow.addEventListener("pointermove",function(e){
-  if(!dragging || hasReleased)return;
+  if(!dragging||hasReleased) return;
 
-  arrowX = e.clientX - startX;
-  arrowY = e.clientY - startY;
+  arrowX=e.clientX-startX;
+  arrowY=e.clientY-startY;
 
-  bow.style.transform =
-    `translate(${arrowX}px, ${arrowY}px)`;
+  bow.style.transform=
+    `translate(${arrowX}px,${arrowY}px)`;
 
-  const b = bow.getBoundingClientRect();
-  const d = diamond.getBoundingClientRect();
+  const b=bow.getBoundingClientRect();
+  const d=diamond.getBoundingClientRect();
 
-  const arrowCenterX = b.left + b.width/2;
-  const arrowCenterY = b.top + b.height/2;
-  const diamondCenterX = d.left + d.width/2;
-  const diamondCenterY = d.top + d.height/2;
+  const arrowCenterX=b.left+b.width/2;
+  const arrowCenterY=b.top+b.height/2;
+  const diamondCenterX=d.left+d.width/2;
+  const diamondCenterY=d.top+d.height/2;
 
-  const distance = Math.hypot(
-    arrowCenterX - diamondCenterX,
-    arrowCenterY - diamondCenterY
+  const distance=Math.hypot(
+    arrowCenterX-diamondCenterX,
+    arrowCenterY-diamondCenterY
   );
 
-  if(distance < Math.max(d.width,d.height)*0.65){
-    diamond.style.filter =
-      "drop-shadow(0 0 35px #ff174f)";
+  if(distance<Math.max(d.width,d.height)*0.65){
+    diamond.style.filter=
+      "drop-shadow(0 0 30px #ff174f)";
   }else{
-    diamond.style.filter =
-      "drop-shadow(0 0 18px #ff466a)";
+    diamond.style.filter=
+      "drop-shadow(0 0 8px #ff8abf) drop-shadow(0 0 22px #ff268f)";
   }
 });
 
 function finishArrowDrag(){
-  if(!dragging || hasReleased)return;
+  if(!dragging||hasReleased) return;
 
-  dragging = false;
+  dragging=false;
 
-  const b = bow.getBoundingClientRect();
-  const d = diamond.getBoundingClientRect();
+  const b=bow.getBoundingClientRect();
+  const d=diamond.getBoundingClientRect();
 
-  const arrowCenterX = b.left + b.width/2;
-  const arrowCenterY = b.top + b.height/2;
-  const diamondCenterX = d.left + d.width/2;
-  const diamondCenterY = d.top + d.height/2;
+  const arrowCenterX=b.left+b.width/2;
+  const arrowCenterY=b.top+b.height/2;
+  const diamondCenterX=d.left+d.width/2;
+  const diamondCenterY=d.top+d.height/2;
 
-  const distance = Math.hypot(
-    arrowCenterX - diamondCenterX,
-    arrowCenterY - diamondCenterY
+  const distance=Math.hypot(
+    arrowCenterX-diamondCenterX,
+    arrowCenterY-diamondCenterY
   );
 
-  // SUCCESS: ARROW REACHES THE DIAMOND
-  if(distance < Math.max(d.width,d.height)*0.75){
-    hasReleased = true;
-
-    diamond.textContent = "💖";
-    diamond.style.transform = "scale(1.2)";
-    diamond.style.filter =
-      "drop-shadow(0 0 35px #ff174f)";
-
-    bow.style.transition = "opacity 0.4s ease";
-    bow.style.opacity = "0";
-
-    setTimeout(()=>nextPage(2),900);
+  if(distance<Math.max(d.width,d.height)*0.75){
+    completeArrow();
   }else{
-    // ARROW RETURNS TO ORIGINAL POSITION
-    bow.style.transition = "transform 0.35s ease";
-    bow.style.transform = "translate(0,0)";
+    bow.style.transition="transform .35s ease";
+    bow.style.transform="translate(0,0)";
 
-    diamond.style.filter =
-      "drop-shadow(0 0 18px #ff466a)";
+    diamond.style.filter=
+      "drop-shadow(0 0 8px #ff8abf) drop-shadow(0 0 22px #ff268f)";
   }
 }
 
 bow.addEventListener("pointerup",finishArrowDrag);
 bow.addEventListener("pointercancel",finishArrowDrag);
 
-// BUTTON STILL WORKS
-function releaseArrow(){
-  if(hasReleased)return;
+function completeArrow(){
+  if(hasReleased) return;
 
-  hasReleased = true;
+  hasReleased=true;
 
-  diamond.textContent = "💖";
-  diamond.style.transform = "scale(1.2)";
-  diamond.style.filter =
-    "drop-shadow(0 0 35px #ff174f)";
+  diamond.textContent="💖";
+  diamond.style.transform="scale(1.2)";
+  diamond.style.filter=
+    "drop-shadow(0 0 18px #ff8abf) drop-shadow(0 0 35px #ff174f)";
 
-  bow.style.opacity = "0";
+  bow.style.transition=
+    "opacity .4s ease, transform .4s ease";
+  bow.style.opacity="0";
 
   setTimeout(()=>nextPage(2),900);
 }
 
-// FLOATING PETALS
-const petals = document.getElementById("petals");
-const petalSymbols = ["🌸","💗","♥","🌹"];
+function releaseArrow(){
+  completeArrow();
+}
 
-for(let i=0;i<22;i++){
-  const petal = document.createElement("span");
+/* KEYBOARD ACCESSIBILITY */
 
-  petal.className = "petal";
-  petal.textContent = petalSymbols[i%petalSymbols.length];
-  petal.style.left = Math.random()*100+"%";
-  petal.style.animationDuration = (7+Math.random()*10)+"s";
-  petal.style.animationDelay = (-Math.random()*15)+"s";
-  petal.style.fontSize = (10+Math.random()*15)+"px";
+bow.addEventListener("keydown",function(e){
+  if(e.key==="Enter"||e.key===" "){
+    e.preventDefault();
+    releaseArrow();
+  }
+});
+
+/* FLOATING PETALS */
+
+const petals=document.getElementById("petals");
+const petalSymbols=["🌸","💗","♥","🌹"];
+
+for(let i=0;i<18;i++){
+  const petal=document.createElement("span");
+
+  petal.className="petal";
+  petal.textContent=petalSymbols[i%petalSymbols.length];
+  petal.style.left=Math.random()*100+"%";
+  petal.style.animationDuration=(8+Math.random()*10)+"s";
+  petal.style.animationDelay=(-Math.random()*15)+"s";
+  petal.style.fontSize=(10+Math.random()*15)+"px";
 
   petals.appendChild(petal);
 }
 
-// RESTART
+/* FLOATING NEON PARTICLES */
+
+const particles=document.getElementById("particles");
+
+for(let i=0;i<24;i++){
+  const particle=document.createElement("span");
+
+  particle.className="particle";
+  particle.style.left=Math.random()*100+"%";
+  particle.style.animationDuration=(9+Math.random()*12)+"s";
+  particle.style.animationDelay=(-Math.random()*18)+"s";
+
+  const size=2+Math.random()*3;
+  particle.style.width=size+"px";
+  particle.style.height=size+"px";
+
+  particles.appendChild(particle);
+}
+
+/* RESTART EXPERIENCE */
+
 function restart(){
-  hasReleased = false;
+  hasReleased=false;
+  dragging=false;
 
-  diamond.textContent = "💎";
-  diamond.style.transform = "";
-  diamond.style.filter = "";
+  diamond.textContent="💎";
+  diamond.style.transform="";
+  diamond.style.filter="";
 
-  bow.style.transition = "";
-  bow.style.transform = "translate(0,0)";
-  bow.style.opacity = "1";
+  bow.style.transition="";
+  bow.style.transform="translate(0,0)";
+  bow.style.opacity="1";
 
   nextPage(1);
 }
 
-// GENERATE BACKGROUND STARS
-const neonStars = document.getElementById("neonStars");
+/* GENERATE STARS */
 
-for(let i=0;i<100;i++){
-  const star = document.createElement("span");
+const neonStars=document.getElementById("neonStars");
 
-  star.className = "neon-star";
-  star.style.left = Math.random()*100+"%";
-  star.style.top = Math.random()*100+"%";
-  star.style.opacity = 0.3+Math.random()*0.7;
+for(let i=0;i<85;i++){
+  const star=document.createElement("span");
+
+  star.className="neon-star";
+  star.style.left=Math.random()*100+"%";
+  star.style.top=Math.random()*100+"%";
+  star.style.opacity=0.3+Math.random()*0.7;
+  star.style.animationDelay=Math.random()*3+"s";
+
+  const size=1+Math.random()*2;
+  star.style.width=size+"px";
+  star.style.height=size+"px";
 
   neonStars.appendChild(star);
 }
