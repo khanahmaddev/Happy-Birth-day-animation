@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ADDED: NEON NIGHT BACKGROUND ONLY */
+/* NEON NIGHT BACKGROUND */
 #neon-background{
   position:fixed;
   inset:0;
@@ -113,77 +113,181 @@ body{
   90%,100%{left:120%;opacity:0}
 }
 
-/* ORIGINAL CSS BELOW - UNCHANGED */
+/* ORIGINAL STYLES */
+#petals{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:5
+}
 
-#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
-.petal{position:absolute;top:-40px;animation:fall linear infinite;opacity:.7}
+.petal{
+  position:absolute;
+  top:-40px;
+  animation:fall linear infinite;
+  opacity:.7
+}
+
 @keyframes fall{
   to{transform:translateY(110vh) rotate(600deg);opacity:0}
 }
+
 .page{
-  min-height:100vh;display:none;align-items:center;
-  justify-content:center;padding:25px 16px;
-  text-align:center;position:relative;
+  min-height:100vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:25px 16px;
+  text-align:center;
+  position:relative;
 }
-.page.active{display:flex;animation:appear 1s ease}
-@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.page.active{
+  display:flex;
+  animation:appear 1s ease
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+
 .card{
-  width:min(100%,420px);padding:32px 22px;
-  border:1px solid #fff8;border-radius:28px;
+  width:min(100%,420px);
+  padding:32px 22px;
+  border:1px solid #fff8;
+  border-radius:28px;
   background:linear-gradient(145deg,#ffdfd8dd,#e8a9b4ee);
   box-shadow:0 18px 50px #70243b30;
-  position:relative;z-index:2;
+  position:relative;
+  z-index:2;
 }
-.eyebrow{letter-spacing:4px;font:11px Arial,sans-serif;margin-bottom:18px}
-h1{font-size:clamp(32px,8vw,47px);line-height:1.15;margin-bottom:17px}
+
+.eyebrow{
+  letter-spacing:4px;
+  font:11px Arial,sans-serif;
+  margin-bottom:18px
+}
+
+h1{
+  font-size:clamp(32px,8vw,47px);
+  line-height:1.15;
+  margin-bottom:17px
+}
+
 h1 em{color:#a02c4a}
-p{font-size:16px;line-height:1.8;margin:12px 0}
+
+p{
+  font-size:16px;
+  line-height:1.8;
+  margin:12px 0
+}
+
 .heart{
-  font-size:110px;line-height:1.4;
+  font-size:110px;
+  line-height:1.4;
   filter:drop-shadow(0 0 18px #ff466a);
-  animation:beat 1.5s infinite;
+  animation:beat 1.5s infinite
 }
-@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+@keyframes beat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.12)}
+}
+
 button{
-  margin:12px 5px 0;padding:14px 22px;border:0;
-  border-radius:30px;background:#922544;color:white;
-  font-size:14px;letter-spacing:1px;cursor:pointer;
-  box-shadow:0 5px 15px #78203935;transition:.25s;
+  margin:12px 5px 0;
+  padding:14px 22px;
+  border:0;
+  border-radius:30px;
+  background:#922544;
+  color:white;
+  font-size:14px;
+  letter-spacing:1px;
+  cursor:pointer;
+  box-shadow:0 5px 15px #78203935;
+  transition:.25s;
 }
-button:hover{transform:translateY(-2px);background:#71162f}
+
+button:hover{
+  transform:translateY(-2px);
+  background:#71162f
+}
+
 .secondary{background:#fff2f1;color:#81233c}
-.bow{font-size:80px;margin:12px 0;cursor:grab;user-select:none}
-.bow:active{transform:scale(.9)}
+
+/* MOBILE + DESKTOP DRAGGABLE ARROW */
+.bow{
+  font-size:80px;
+  margin:12px 0;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:none;
+  display:inline-block;
+  position:relative;
+  z-index:10;
+  transform:translate(0,0);
+}
+
+.bow:active{cursor:grabbing}
+
 .dark{
   background:radial-gradient(ellipse at center,#76203d,#240817);
   color:#ffe6d6;
 }
+
 .dark .card{
   background:linear-gradient(145deg,#67132dce,#250817e8);
   border-color:#ffb5bd55;
 }
+
 .dark h1{color:#ffe2a3}
-.dark button{background:#f5c5b4;color:#57152c}
-.tree{font-size:125px;filter:drop-shadow(0 0 22px #ff8baf);margin:12px}
+
+.dark button{
+  background:#f5c5b4;
+  color:#57152c
+}
+
+.tree{
+  font-size:125px;
+  filter:drop-shadow(0 0 22px #ff8baf);
+  margin:12px
+}
+
 .letter{
-  background:#fff0e6;color:#70213a;padding:24px;
-  border-radius:16px;line-height:1.9;margin-top:20px;
+  background:#fff0e6;
+  color:#70213a;
+  padding:24px;
+  border-radius:16px;
+  line-height:1.9;
+  margin-top:20px;
   box-shadow:0 8px 20px #3d0b2022;
 }
-.footer{font:11px Arial,sans-serif;letter-spacing:2px;margin-top:25px;opacity:.8}
+
+.footer{
+  font:11px Arial,sans-serif;
+  letter-spacing:2px;
+  margin-top:25px;
+  opacity:.8
+}
+
 .small{font:12px Arial,sans-serif;opacity:.8}
 #musicNote{font:12px Arial,sans-serif}
+
 @media(max-width:380px){
- .card{padding:26px 16px}
- .heart{font-size:90px}
- p{font-size:15px}
+  .card{padding:26px 16px}
+  .heart{font-size:90px}
+  p{font-size:15px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ADDED: BACKGROUND ELEMENTS -->
+<!-- BACKGROUND -->
 <div id="neon-background">
   <div class="neon-moon"></div>
   <div class="neon-glow neon-glow-one"></div>
@@ -194,7 +298,7 @@ button:hover{transform:translateY(-2px);background:#71162f}
 
 <div id="petals"></div>
 
-<!-- PAGE 1: INTERACTIVE SURPRISE -->
+<!-- PAGE 1 -->
 <section class="page active" id="page1">
   <div class="card">
     <div class="eyebrow">A LITTLE SURPRISE FOR YOU</div>
@@ -203,7 +307,7 @@ button:hover{transform:translateY(-2px);background:#71162f}
     <p>A little birthday surprise, just for you.</p>
 
     <div class="heart" id="heart">💎</div>
-    <div class="bow" id="bow" onclick="releaseArrow()">🏹</div>
+    <div class="bow" id="bow" aria-label="Drag the arrow to the diamond">🏹</div>
     <p>Pull the arrow and make a wish ❤️</p>
 
     <button onclick="releaseArrow()">PULL &amp; RELEASE ♥</button>
@@ -211,7 +315,7 @@ button:hover{transform:translateY(-2px);background:#71162f}
   </div>
 </section>
 
-<!-- PAGE 2: BIRTHDAY WISH -->
+<!-- PAGE 2 -->
 <section class="page dark" id="page2">
   <div class="card">
     <div class="eyebrow">A WISH FROM MY HEART</div>
@@ -224,12 +328,13 @@ button:hover{transform:translateY(-2px);background:#71162f}
   </div>
 </section>
 
-<!-- PAGE 3: HEART TREE AND LETTER -->
+<!-- PAGE 3 -->
 <section class="page" id="page3">
   <div class="card">
     <div class="eyebrow">A LITTLE PIECE OF MY HEART</div>
     <h1>For you, <em id="name3">My Love</em></h1>
     <div class="tree">🌸</div>
+
     <div class="letter">
       <h2>My Dearest Love, ❤️</h2>
       <p>
@@ -246,12 +351,13 @@ button:hover{transform:translateY(-2px);background:#71162f}
       </p>
       <p><em>Always wishing the best for you. ❤️</em></p>
     </div>
+
     <button onclick="nextPage(4)">ONE LAST SURPRISE ✨</button>
     <div class="footer">YOUR HAPPINESS MATTERS MOST</div>
   </div>
 </section>
 
-<!-- PAGE 4: ENDING -->
+<!-- PAGE 4 -->
 <section class="page dark" id="page4">
   <div class="card">
     <div class="eyebrow">ONE LAST THING...</div>
@@ -270,66 +376,189 @@ button:hover{transform:translateY(-2px);background:#71162f}
 
 <script>
 // CUSTOMIZE THESE DETAILS
-const LOVE_NAME = "Your Love"; // Change to her name
+const LOVE_NAME = "Your Love";
 const YOUR_NAME = "Someone who cares about you";
 
-// Set names throughout the website
+// SET NAMES
 ["name1","name2","name3"].forEach(id=>{
   document.getElementById(id).textContent=LOVE_NAME;
 });
+
 document.getElementById("finalName").textContent=
   "With love, " + YOUR_NAME + " ❤️";
 
-// Move between story pages
+// MOVE BETWEEN PAGES
 function nextPage(number){
   document.querySelectorAll(".page").forEach(page=>{
     page.classList.remove("active");
   });
+
   document.getElementById("page"+number).classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// Heart/bow interaction
+// DRAG ARROW TO THE DIAMOND
+const bow = document.getElementById("bow");
+const diamond = document.getElementById("heart");
+
+let dragging = false;
+let hasReleased = false;
+let startX = 0;
+let startY = 0;
+let arrowX = 0;
+let arrowY = 0;
+
+bow.addEventListener("pointerdown",function(e){
+  if(hasReleased)return;
+
+  dragging = true;
+  startX = e.clientX;
+  startY = e.clientY;
+  arrowX = 0;
+  arrowY = 0;
+
+  bow.style.transition = "none";
+  bow.setPointerCapture(e.pointerId);
+  e.preventDefault();
+});
+
+bow.addEventListener("pointermove",function(e){
+  if(!dragging || hasReleased)return;
+
+  arrowX = e.clientX - startX;
+  arrowY = e.clientY - startY;
+
+  bow.style.transform =
+    `translate(${arrowX}px, ${arrowY}px)`;
+
+  const b = bow.getBoundingClientRect();
+  const d = diamond.getBoundingClientRect();
+
+  const arrowCenterX = b.left + b.width/2;
+  const arrowCenterY = b.top + b.height/2;
+  const diamondCenterX = d.left + d.width/2;
+  const diamondCenterY = d.top + d.height/2;
+
+  const distance = Math.hypot(
+    arrowCenterX - diamondCenterX,
+    arrowCenterY - diamondCenterY
+  );
+
+  if(distance < Math.max(d.width,d.height)*0.65){
+    diamond.style.filter =
+      "drop-shadow(0 0 35px #ff174f)";
+  }else{
+    diamond.style.filter =
+      "drop-shadow(0 0 18px #ff466a)";
+  }
+});
+
+function finishArrowDrag(){
+  if(!dragging || hasReleased)return;
+
+  dragging = false;
+
+  const b = bow.getBoundingClientRect();
+  const d = diamond.getBoundingClientRect();
+
+  const arrowCenterX = b.left + b.width/2;
+  const arrowCenterY = b.top + b.height/2;
+  const diamondCenterX = d.left + d.width/2;
+  const diamondCenterY = d.top + d.height/2;
+
+  const distance = Math.hypot(
+    arrowCenterX - diamondCenterX,
+    arrowCenterY - diamondCenterY
+  );
+
+  // SUCCESS: ARROW REACHES THE DIAMOND
+  if(distance < Math.max(d.width,d.height)*0.75){
+    hasReleased = true;
+
+    diamond.textContent = "💖";
+    diamond.style.transform = "scale(1.2)";
+    diamond.style.filter =
+      "drop-shadow(0 0 35px #ff174f)";
+
+    bow.style.transition = "opacity 0.4s ease";
+    bow.style.opacity = "0";
+
+    setTimeout(()=>nextPage(2),900);
+  }else{
+    // ARROW RETURNS TO ORIGINAL POSITION
+    bow.style.transition = "transform 0.35s ease";
+    bow.style.transform = "translate(0,0)";
+
+    diamond.style.filter =
+      "drop-shadow(0 0 18px #ff466a)";
+  }
+}
+
+bow.addEventListener("pointerup",finishArrowDrag);
+bow.addEventListener("pointercancel",finishArrowDrag);
+
+// BUTTON STILL WORKS
 function releaseArrow(){
-  const heart=document.getElementById("heart");
-  heart.textContent="💖";
-  heart.style.transform="scale(1.35)";
-  heart.style.filter="drop-shadow(0 0 35px #ff174f)";
+  if(hasReleased)return;
+
+  hasReleased = true;
+
+  diamond.textContent = "💖";
+  diamond.style.transform = "scale(1.2)";
+  diamond.style.filter =
+    "drop-shadow(0 0 35px #ff174f)";
+
+  bow.style.opacity = "0";
+
   setTimeout(()=>nextPage(2),900);
 }
 
-// Floating petals - original animation unchanged
-const petals=document.getElementById("petals");
-const petalSymbols=["🌸","💗","♥","🌹"];
+// FLOATING PETALS
+const petals = document.getElementById("petals");
+const petalSymbols = ["🌸","💗","♥","🌹"];
+
 for(let i=0;i<22;i++){
-  const petal=document.createElement("span");
-  petal.className="petal";
-  petal.textContent=petalSymbols[i%petalSymbols.length];
-  petal.style.left=Math.random()*100+"%";
-  petal.style.animationDuration=(7+Math.random()*10)+"s";
-  petal.style.animationDelay=(-Math.random()*15)+"s";
-  petal.style.fontSize=(10+Math.random()*15)+"px";
+  const petal = document.createElement("span");
+
+  petal.className = "petal";
+  petal.textContent = petalSymbols[i%petalSymbols.length];
+  petal.style.left = Math.random()*100+"%";
+  petal.style.animationDuration = (7+Math.random()*10)+"s";
+  petal.style.animationDelay = (-Math.random()*15)+"s";
+  petal.style.fontSize = (10+Math.random()*15)+"px";
+
   petals.appendChild(petal);
 }
 
+// RESTART
 function restart(){
-  document.getElementById("heart").textContent="💎";
-  document.getElementById("heart").style.transform="";
-  document.getElementById("heart").style.filter="";
+  hasReleased = false;
+
+  diamond.textContent = "💎";
+  diamond.style.transform = "";
+  diamond.style.filter = "";
+
+  bow.style.transition = "";
+  bow.style.transform = "translate(0,0)";
+  bow.style.opacity = "1";
+
   nextPage(1);
 }
 
-// ADDED: GENERATE BACKGROUND STARS ONLY
-const neonStars=document.getElementById("neonStars");
+// GENERATE BACKGROUND STARS
+const neonStars = document.getElementById("neonStars");
 
 for(let i=0;i<100;i++){
-  const star=document.createElement("span");
-  star.className="neon-star";
-  star.style.left=Math.random()*100+"%";
-  star.style.top=Math.random()*100+"%";
-  star.style.opacity=0.3+Math.random()*0.7;
+  const star = document.createElement("span");
+
+  star.className = "neon-star";
+  star.style.left = Math.random()*100+"%";
+  star.style.top = Math.random()*100+"%";
+  star.style.opacity = 0.3+Math.random()*0.7;
+
   neonStars.appendChild(star);
 }
 </script>
+
 </body>
 </html>
